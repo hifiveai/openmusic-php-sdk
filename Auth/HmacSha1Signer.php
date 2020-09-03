@@ -9,7 +9,8 @@ class HmacSha1Signer implements Signer {
     public function signString($header, $method, $param, $appSecret) {
         $headerStr = $this->headerStr($header, $method);
         $paramStr = $this->paramStr($param);
-        $hash = hash_hmac('sha1', base64_encode($paramStr . '&' . $headerStr), $appSecret, true);
+        $sign = $paramStr ? ($paramStr . '&' . $headerStr) : $headerStr;
+        $hash = hash_hmac('sha1', base64_encode($sign), $appSecret, true);
         return strtoupper(md5($hash));
     }
 

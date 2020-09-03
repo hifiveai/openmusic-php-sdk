@@ -5,5 +5,6 @@
  */
 
 class BitRateEnum {
+
     const BR_128 = 128;
 }

@@ -5,5 +5,6 @@
  */
 
 class FileExtEnum {
+
     const MP3 = 'mp3';
 }

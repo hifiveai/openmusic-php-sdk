@@ -5,6 +5,7 @@
  */
 
 class LangEnum {
+
     const CN = 0;
     const EN = 1;
 }

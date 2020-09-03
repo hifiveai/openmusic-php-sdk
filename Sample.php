@@ -4,9 +4,6 @@
  * 示例类
  */
 
-$path = dirname(__FILE__) . DIRECTORY_SEPARATOR;
-include_once $path . 'Config.php';
-
 class Sample {
 
     private $client;
