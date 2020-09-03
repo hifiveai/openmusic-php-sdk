@@ -12,10 +12,10 @@ class HttpHelper {
     public static function curl($url, $method = 'GET', $param = null, $headers = null) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        if (ENABLE_HTTP_PROXY) {
+        if (HF_ENABLE_HTTP_PROXY) {
             curl_setopt($ch, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
-            curl_setopt($ch, CURLOPT_PROXY, HTTP_PROXY_IP);
-            curl_setopt($ch, CURLOPT_PROXYPORT, HTTP_PROXY_PORT);
+            curl_setopt($ch, CURLOPT_PROXY, HF_HTTP_PROXY_IP);
+            curl_setopt($ch, CURLOPT_PROXYPORT, HF_HTTP_PROXY_PORT);
             curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
         }
         $paramNoEmpty = Helper::arrNoEmpty($param);
