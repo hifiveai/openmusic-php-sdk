@@ -10,15 +10,18 @@ class DefaultProfile implements HFProfile {
     private static $profile;
     private static $signer;
     private static $credential;
+    private static $userToken;
 
     private function __construct($endpoint, $credential) {
         self::$endpoint = $endpoint;
         self::$credential = $credential;
     }
 
-    public static function build($endpoint, $appId, $appSecret) {
+    public static function build($endpoint, $appId, $appSecret, $userToken = '') {
         $credential = new Credential($appId, $appSecret);
+
         self::$profile = new DefaultProfile($endpoint, $credential);
+        self::$userToken = $userToken;
         return self::$profile;
     }
 
@@ -35,5 +38,13 @@ class DefaultProfile implements HFProfile {
 
     public static function getEndpoint() {
         return self::$endpoint;
+    }
+
+    public function token($token) {
+        self::$userToken = $token;
+    }
+
+    public function getToken() {
+        return self::$userToken;
     }
 }

@@ -48,27 +48,11 @@ class DefaultClient implements HFClient {
                 $request->getMethod(),
                 $request->getParam(),
                 $credential->getAppSecret());
-
-        $userToken = $this->userToken();
-        if ($userToken) {
-            $header['X_HF_Token'] = $userToken;
+        if ($this->profile->getToken()) {
+            $header['X_HF_Token'] = $this->profile->getToken();
         }
 
         return $header;
-    }
-
-    private function userToken() {
-        if (function_exists('getallheaders')) {
-            $header = getallheaders();
-            if (!isset($header['X_HF_Token'])) {
-                return '';
-            }
-            return $header['X_HF_Token'];
-        }
-        if (!isset($_SERVER['X_HF_Token'])) {
-            return '';
-        }
-        return $_SERVER['X_HF_Token'];
     }
 
     private function parseResponse($body, $format) {
