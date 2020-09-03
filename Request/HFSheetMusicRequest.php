@@ -28,7 +28,7 @@ class HFSheetMusicRequest extends HFRequest {
         return $this;
     }
 
-    public function size($size) {
+    public function pageSize($size) {
         $this->pageSize = $size;
         return $this;
     }
