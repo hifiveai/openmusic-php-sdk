@@ -20,7 +20,7 @@ class HttpHelper {
         }
         $paramNoEmpty = Helper::arrNoEmpty($param);
         if ('GET' == $method && $paramNoEmpty) {
-            $url .= '?' . Helper::buildQuery($param);
+            $url .= '?' . Helper::buildQuery($param, true);
         }
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);

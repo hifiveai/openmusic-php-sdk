@@ -17,10 +17,16 @@ class Helper {
         return $part2 . ceil($part1 * 1000);
     }
 
-    public static function buildQuery($param) {
+    public static function buildQuery($param, $encode = false) {
         $res = array();
-        foreach ($param as $k => $v) {
-            array_push($res, $k . '=' . $v);
+        if ($encode) {
+            foreach ($param as $k => $v) {
+                array_push($res, $k . '=' . urlencode($v));
+            }
+        } else {
+            foreach ($param as $k => $v) {
+                array_push($res, $k . '=' . $v);
+            }
         }
         return implode('&', $res);
     }

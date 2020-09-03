@@ -15,6 +15,8 @@ class Sample {
         // $profile = DefaultProfile::build($url, $appId, $appSecret, $userToken);
         // 初始化client
         $this->client = new DefaultClient($profile);
+        // 在其他地方修改userToken
+        // $this->client->profile->token('');
     }
 
     public function tagSheetTest() {
@@ -66,24 +68,26 @@ class Sample {
     }
 
     public function hqlListenTest() {
-        $request = new HFSheetMusicRequest();
+        $request = new HFHQListenRequest();
 
         $request->clientId('sample-device')
-            ->sheetId(1203)
-            ->language(LangEnum::CN)
-            ->page(1)
-            ->pageSize(10);
+            ->musicId('B7B810AABADF')
+            ->audioFormat(AudioFormatEnum::MP3_128['ext'])
+            ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
         return $this->client->getResponse($request);
     }
 
     public function hqlListenSliceTest() {
-        $request = new HFSheetMusicRequest();
+        $request = new HFHQListenSliceRequest();
 
         $request->clientId('sample-device')
-            ->sheetId(1203)
-            ->page(1)
-            ->pageSize(10);
+            ->musicId('B7B810AABADF')
+            ->audioFormat(AudioFormatEnum::MP3_128['ext'])
+            ->audioRate(AudioFormatEnum::MP3_128['rate'])
+            ->isMixed(true)
+            ->auditionBegin(10)
+            ->auditionEnd(20);
 
         return $this->client->getResponse($request);
     }
@@ -210,5 +214,19 @@ class Sample {
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
         return $this->client->getResponse($request);
+    }
+
+    public function authorizationTest() {
+        $request = new HFAuthorizationRequest();
+
+        $request->clientId('sample-device')
+            ->companyName('嗨翻屋')
+            ->projectName('小嗨')
+            ->brand('HIFIVE音乐开放平台')
+            ->period(PeriodEnum::THREE_YEARS)
+            ->area(AreaEnum::_GLOBAL)
+            ->orderIds('14345565691451');
+
+        return $this->client->doAction($request);
     }
 }
