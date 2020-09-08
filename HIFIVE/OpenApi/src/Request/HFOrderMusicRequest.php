@@ -47,7 +47,7 @@ class HFOrderMusicRequest extends HFRequest {
         return $this;
     }
 
-    public function setDeadline($deadline) {
+    public function deadline($deadline) {
         $this->deadline = $deadline;
         return $this;
     }
