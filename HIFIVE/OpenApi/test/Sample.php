@@ -310,9 +310,13 @@ class Sample {
     }
 
     public function orderTagSheetTest() {
-        $request = new HFOrderTagRequest();
+        $request = new HFOrderTagSheetRequest();
 
-        $request->clientId('sample-device');
+        $request->clientId('sample-device')
+            // ->tagId(5440)
+            ->recoNum(3)
+            ->language(LangEnum::CN)
+            ->type(SheetTypeEnum::CUSTOM);
 
         return $this->client->getResponse($request);
     }
