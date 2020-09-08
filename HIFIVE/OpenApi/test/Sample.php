@@ -450,7 +450,7 @@ class Sample {
         return $this->client->getResponse($request);
     }
 
-    public function ChannelSheetTest() {
+    public function channelSheetTest() {
         $request = new HFChannelSheetRequest();
 
         $request->clientId('sample-device')
