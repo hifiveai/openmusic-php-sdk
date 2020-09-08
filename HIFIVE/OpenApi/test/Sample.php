@@ -366,6 +366,18 @@ class Sample {
         return $this->client->getResponse($request);
     }
 
+    public function orderTagMusicTest() {
+        $request = new HFOrderTagMusicRequest();
+
+        $request->clientId('sample-device')
+            // ->tagId(5440)
+            ->language(LangEnum::CN)
+            ->page(1)
+            ->pageSize(10);
+
+        return $this->client->getResponse($request);
+    }
+
     public function userGetTest() {
         $request = new HFUserGetRequest();
 
