@@ -1,0 +1,16 @@
+{
+    "name": "hifive/openapi",
+    "description": "hifive openapi sdk",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhaowei",
+            "email": "zhaowei@hifive.ai"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {
+        "php": ">=5.6"
+    }
+}
