@@ -19,7 +19,7 @@ class Sample {
 
     public function tagSheetTest() {
         // 构造请求体
-        $request = new HFTagSheetRequest();
+        $request = new HiFiveTagSheetRequest();
         // 设置参数
         $request->clientId('sample-device')
             // ->tagId(407)
@@ -31,7 +31,7 @@ class Sample {
     }
 
     public function sheetTagTest() {
-        $request = new HFSheetTagRequest();
+        $request = new HiFiveSheetTagRequest();
 
         $request->clientId('sample-device');
 
@@ -39,7 +39,7 @@ class Sample {
     }
 
     public function searchMusicTest() {
-        $request = new HFSearchMusicRequest();
+        $request = new HiFiveSearchMusicRequest();
 
         $request->clientId('sample-device')
             ->keyword('world')
@@ -55,7 +55,7 @@ class Sample {
     }
 
     public function sheetMusicTest() {
-        $request = new HFSheetMusicRequest();
+        $request = new HiFiveSheetMusicRequest();
 
         $request->clientId('sample-device')
             ->sheetId(1203)
@@ -66,7 +66,7 @@ class Sample {
     }
 
     public function hqlListenTest() {
-        $request = new HFHQListenRequest();
+        $request = new HiFiveHQListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -77,7 +77,7 @@ class Sample {
     }
 
     public function hqlListenSliceTest() {
-        $request = new HFHQListenSliceRequest();
+        $request = new HiFiveHQListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -91,7 +91,7 @@ class Sample {
     }
 
     public function trafficTagTest() {
-        $request = new HFTrafficTagRequest();
+        $request = new HiFiveTrafficTagRequest();
 
         $request->clientId('sample-device');
 
@@ -99,7 +99,7 @@ class Sample {
     }
 
     public function trafficTagSheetTest() {
-        $request = new HFTrafficTagSheetRequest();
+        $request = new HiFiveTrafficTagSheetRequest();
 
         $request->clientId('sample-device')
             // ->tagId(407)
@@ -111,7 +111,7 @@ class Sample {
     }
 
     public function trafficTagMusicTest() {
-        $request = new HFTrafficTagMusicRequest();
+        $request = new HiFiveTrafficTagMusicRequest();
 
         $request->clientId('sample-device')
             // ->tagId(5440)
@@ -123,7 +123,7 @@ class Sample {
     }
 
     public function trafficSearchMusicTest() {
-        $request = new HFTrafficSearchMusicRequest();
+        $request = new HiFiveTrafficSearchMusicRequest();
 
         $request->clientId('sample-device')
             ->keyword('hello')
@@ -135,7 +135,7 @@ class Sample {
     }
 
     public function trafficSheetMusicTest() {
-        $request = new HFTrafficSheetMusicRequest();
+        $request = new HiFiveTrafficSheetMusicRequest();
 
         $request->clientId('sample-device')
             ->sheetId(1203)
@@ -147,7 +147,7 @@ class Sample {
     }
 
     public function trafficListenTest() {
-        $request = new HFTrafficListenRequest();
+        $request = new HiFiveTrafficListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -158,7 +158,7 @@ class Sample {
     }
 
     public function trafficListenMixedTest() {
-        $request = new HFTrafficListenMixedRequest();
+        $request = new HiFiveTrafficListenMixedRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -169,7 +169,7 @@ class Sample {
     }
 
     public function trafficListenSliceTest() {
-        $request = new HFTrafficListenSliceRequest();
+        $request = new HiFiveTrafficListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -183,7 +183,7 @@ class Sample {
     }
 
     public function trafficGroupTest() {
-        $request = new HFTrafficGroupRequest();
+        $request = new HiFiveTrafficGroupRequest();
 
         $request->clientId('sample-device');
 
@@ -191,7 +191,7 @@ class Sample {
     }
 
     public function trafficGroupSheetTest() {
-        $request = new HFTrafficGroupSheetRequest();
+        $request = new HiFiveTrafficGroupSheetRequest();
 
         $request->clientId('sample-device')
             ->groupId('csa0t86qv24')
@@ -204,7 +204,7 @@ class Sample {
     }
 
     public function trafficDownloadTest() {
-        $request = new HFTrafficDownloadRequest();
+        $request = new HiFiveTrafficDownloadRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -215,7 +215,7 @@ class Sample {
     }
 
     public function authorizationTest() {
-        $request = new HFAuthorizationRequest();
+        $request = new HiFiveAuthorizationRequest();
 
         $request->clientId('sample-device')
             ->companyName('嗨翻屋')
@@ -229,7 +229,7 @@ class Sample {
     }
 
     public function orderSearchMusicTest() {
-        $request = new HFOrderSearchMusicRequest();
+        $request = new HiFiveOrderSearchMusicRequest();
 
         $request->clientId('sample-device')
             ->keyword('world')
@@ -241,7 +241,7 @@ class Sample {
     }
 
     public function orderListenMixedTest() {
-        $request = new HFOrderListenMixedRequest();
+        $request = new HiFiveOrderListenMixedRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -252,7 +252,7 @@ class Sample {
     }
 
     public function orderListenTest() {
-        $request = new HFOrderListenRequest();
+        $request = new HiFiveOrderListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -263,7 +263,7 @@ class Sample {
     }
 
     public function orderListenSliceTest() {
-        $request = new HFOrderListenSliceRequest();
+        $request = new HiFiveOrderListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -277,7 +277,7 @@ class Sample {
     }
 
     public function orderSheetMusicTest() {
-        $request = new HFOrderSheetMusicRequest();
+        $request = new HiFiveOrderSheetMusicRequest();
 
         $request->clientId('sample-device')
             ->sheetId(1203)
@@ -289,7 +289,7 @@ class Sample {
     }
 
     public function orderGroupTest() {
-        $request = new HFOrderGroupRequest();
+        $request = new HiFiveOrderGroupRequest();
 
         $request->clientId('sample-device');
 
@@ -297,7 +297,7 @@ class Sample {
     }
 
     public function orderGroupSheetTest() {
-        $request = new HFOrderGroupSheetRequest();
+        $request = new HiFiveOrderGroupSheetRequest();
 
         $request->clientId('sample-device')
             ->groupId('csa0t86qv24')
@@ -310,7 +310,7 @@ class Sample {
     }
 
     public function orderTagSheetTest() {
-        $request = new HFOrderTagSheetRequest();
+        $request = new HiFiveOrderTagSheetRequest();
 
         $request->clientId('sample-device')
             // ->tagId(5440)
@@ -322,7 +322,7 @@ class Sample {
     }
 
     public function orderRefundTest() {
-        $request = new HFOrderRefundRequest();
+        $request = new HiFiveOrderRefundRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145');
@@ -331,7 +331,7 @@ class Sample {
     }
 
     public function orderDetailTest() {
-        $request = new HFOrderDetailRequest();
+        $request = new HiFiveOrderDetailRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145');
@@ -340,7 +340,7 @@ class Sample {
     }
 
     public function orderPublishTest() {
-        $request = new HFOrderPublishRequest();
+        $request = new HiFiveOrderPublishRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145')
@@ -350,7 +350,7 @@ class Sample {
     }
 
     public function orderMusicTest() {
-        $request = new HFOrderMusicRequest();
+        $request = new HiFiveOrderMusicRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145')
@@ -367,7 +367,7 @@ class Sample {
     }
 
     public function orderTagMusicTest() {
-        $request = new HFOrderTagMusicRequest();
+        $request = new HiFiveOrderTagMusicRequest();
 
         $request->clientId('sample-device')
             // ->tagId(5440)
@@ -379,7 +379,7 @@ class Sample {
     }
 
     public function userGetTest() {
-        $request = new HFUserGetRequest();
+        $request = new HiFiveUserGetRequest();
 
         $request->clientId('sample-device')
             ->nickname('zealot')
@@ -396,7 +396,7 @@ class Sample {
     }
 
     public function baseFavoriteTest() {
-        $request = new HFBaseFavoriteRequest();
+        $request = new HiFiveBaseFavoriteRequest();
 
         $request->clientId('sample-device')
             ->page(1)
@@ -409,7 +409,7 @@ class Sample {
     }
 
     public function behaviorTest() {
-        $request = new HFBehaviorRequest();
+        $request = new HiFiveBehaviorRequest();
 
         $request->clientId('sample-device')
             ->targetId('B75C80A41E3A')
@@ -421,7 +421,7 @@ class Sample {
     }
 
     public function hotTest() {
-        $request = new HFHotRequest();
+        $request = new HiFiveHotRequest();
 
         $request->clientId('sample-device')
             ->startTime(1594639058)
@@ -433,7 +433,7 @@ class Sample {
     }
 
     public function baseWeatherTest() {
-        $request = new HFBaseWeatherRequest();
+        $request = new HiFiveBaseWeatherRequest();
 
         $request->clientId('sample-device')
             ->location('30.779164,103.94547');
@@ -442,7 +442,7 @@ class Sample {
     }
 
     public function baseVisualTest() {
-        $request = new HFBaseVisualRequest();
+        $request = new HiFiveBaseVisualRequest();
 
         $request->clientId('sample-device')
             ->location('30.779164,103.94547');
@@ -451,7 +451,7 @@ class Sample {
     }
 
     public function musicConfigTest() {
-        $request = new HFMusicConfigRequest();
+        $request = new HiFiveMusicConfigRequest();
 
         $request->clientId('sample-device');
 
@@ -459,7 +459,7 @@ class Sample {
     }
 
     public function channelTest() {
-        $request = new HFChannelRequest();
+        $request = new HiFiveChannelRequest();
 
         $request->clientId('sample-device');
 
@@ -467,7 +467,7 @@ class Sample {
     }
 
     public function channelSheetTest() {
-        $request = new HFChannelSheetRequest();
+        $request = new HiFiveChannelSheetRequest();
 
         $request->clientId('sample-device')
             ->groupId('csa0t86qv24')
