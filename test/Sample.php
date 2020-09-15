@@ -69,15 +69,15 @@ class Sample {
         $request = new HFSearchMusicRequest();
 
         $request->clientId('sample-device')
-            //->keyword('world')
-            //->language(LangEnum::CN)
-            //->priceFromCent(1)
-            //->priceToCent(10000)
-            //->tagIds([407, 100])
-            //->bpmFrom(1)
-            //->bpmTo(300)
-            //->durationFrom(1)
-            //->durationTo(180)
+            ->keyword('world')
+            ->language(LangEnum::CN)
+            ->priceFromCent(1)
+            ->priceToCent(10000)
+            ->tagIds([407, 100])
+            ->bpmFrom(1)
+            ->bpmTo(300)
+            ->durationFrom(1)
+            ->durationTo(180)
             ->page(1)
             ->pageSize(10);
 
@@ -192,9 +192,7 @@ class Sample {
         $request = new HFTrafficListenRequest();
 
         $request->clientId('sample-device')
-            ->musicId('B7B810AABADF')
-            ->audioFormat(AudioFormatEnum::MP3_128['ext'])
-            ->audioRate(AudioFormatEnum::MP3_128['rate']);
+            ->musicId('B7B810AABADF');
 
         $res = $this->client->getResponse($request);
         if (10200 != $res->code) {
