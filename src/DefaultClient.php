@@ -49,7 +49,7 @@ class DefaultClient implements HFClient {
                 $request->getParam(),
                 $credential->getAppSecret());
         if ($this->profile->getToken()) {
-            $header['X_HF_Token'] = $this->profile->getToken();
+            $header['X-HF-Token'] = $this->profile->getToken();
         }
 
         return $header;

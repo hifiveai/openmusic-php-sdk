@@ -11,15 +11,36 @@ class Sample {
     function __construct($url, $appId, $appSecret) {
         // 基础信息
         $profile = DefaultProfile::build($url, $appId, $appSecret);
-        // 如果需要，设置用户身份识别token
-        // $profile = DefaultProfile::build($url, $appId, $appSecret, $userToken);
         // 初始化client
         $this->client = new DefaultClient($profile);
     }
 
+    public function baseLoginTest() {
+        $request = new HFBaseLoginRequest();
+
+        $request->clientId('sample-device')
+            ->nickname('黄达')
+            ->gender(GenderEnum::MALE)
+            ->birthday('202012121')
+            ->location('30.779164,103.94547')
+            ->education(EducationEnum::MASTER)
+            ->profession(8)
+            ->isOrganization(true)
+            ->favoriteSinger('周杰伦')
+            ->favoriteGenre(1);
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+        // 用户登录后保存token
+        $this->client->profile->token($res->data->token);
+    }
+
     public function tagSheetTest() {
         // 构造请求体
-        $request = new HiFiveTagSheetRequest();
+        $request = new HFTagSheetRequest();
         // 设置参数
         $request->clientId('sample-device')
             // ->tagId(407)
@@ -27,57 +48,75 @@ class Sample {
             ->language(LangEnum::CN)
             ->recoNum(3);
         // 返回结果
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function sheetTagTest() {
-        $request = new HiFiveSheetTagRequest();
+        $request = new HFSheetTagRequest();
 
         $request->clientId('sample-device');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function searchMusicTest() {
-        $request = new HiFiveSearchMusicRequest();
+        $request = new HFSearchMusicRequest();
 
         $request->clientId('sample-device')
-            ->keyword('world')
-            ->language(LangEnum::CN)
-            ->price('1-10000')
-            // ->tagId(407)
-            ->bpm('1-300')
-            ->duration('1-180')
+            //->keyword('world')
+            //->language(LangEnum::CN)
+            //->priceFromCent(1)
+            //->priceToCent(10000)
+            //->tagIds([407, 100])
+            //->bpmFrom(1)
+            //->bpmTo(300)
+            //->durationFrom(1)
+            //->durationTo(180)
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function sheetMusicTest() {
-        $request = new HiFiveSheetMusicRequest();
+        $request = new HFSheetMusicRequest();
 
         $request->clientId('sample-device')
             ->sheetId(1203)
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function hqlListenTest() {
-        $request = new HiFiveHQListenRequest();
+        $request = new HFHQListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function hqlListenSliceTest() {
-        $request = new HiFiveHQListenSliceRequest();
+        $request = new HFHQListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -87,19 +126,25 @@ class Sample {
             ->auditionBegin(10)
             ->auditionEnd(20);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficTagTest() {
-        $request = new HiFiveTrafficTagRequest();
+        $request = new HFTrafficTagRequest();
 
         $request->clientId('sample-device');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficTagSheetTest() {
-        $request = new HiFiveTrafficTagSheetRequest();
+        $request = new HFTrafficTagSheetRequest();
 
         $request->clientId('sample-device')
             // ->tagId(407)
@@ -107,23 +152,14 @@ class Sample {
             ->language(LangEnum::CN)
             ->type(SheetTypeEnum::SYS);
 
-        return $this->client->getResponse($request);
-    }
-
-    public function trafficTagMusicTest() {
-        $request = new HiFiveTrafficTagMusicRequest();
-
-        $request->clientId('sample-device')
-            // ->tagId(5440)
-            ->language(LangEnum::CN)
-            ->page(1)
-            ->pageSize(10);
-
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficSearchMusicTest() {
-        $request = new HiFiveTrafficSearchMusicRequest();
+        $request = new HFTrafficSearchMusicRequest();
 
         $request->clientId('sample-device')
             ->keyword('hello')
@@ -131,11 +167,14 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficSheetMusicTest() {
-        $request = new HiFiveTrafficSheetMusicRequest();
+        $request = new HFTrafficSheetMusicRequest();
 
         $request->clientId('sample-device')
             ->sheetId(1203)
@@ -143,33 +182,42 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficListenTest() {
-        $request = new HiFiveTrafficListenRequest();
+        $request = new HFTrafficListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficListenMixedTest() {
-        $request = new HiFiveTrafficListenMixedRequest();
+        $request = new HFTrafficListenMixedRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficListenSliceTest() {
-        $request = new HiFiveTrafficListenSliceRequest();
+        $request = new HFTrafficListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -179,19 +227,25 @@ class Sample {
             ->auditionBegin(5)
             ->auditionEnd(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficGroupTest() {
-        $request = new HiFiveTrafficGroupRequest();
+        $request = new HFTrafficGroupRequest();
 
         $request->clientId('sample-device');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficGroupSheetTest() {
-        $request = new HiFiveTrafficGroupSheetRequest();
+        $request = new HFTrafficGroupSheetRequest();
 
         $request->clientId('sample-device')
             ->groupId('csa0t86qv24')
@@ -200,22 +254,28 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function trafficDownloadTest() {
-        $request = new HiFiveTrafficDownloadRequest();
+        $request = new HFTrafficDownloadRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
-    public function authorizationTest() {
-        $request = new HiFiveAuthorizationRequest();
+    public function orderAuthorizationTest() {
+        $request = new HFOrderAuthorizationRequest();
 
         $request->clientId('sample-device')
             ->companyName('嗨翻屋')
@@ -225,45 +285,42 @@ class Sample {
             ->area(AreaEnum::_GLOBAL)
             ->orderIds('14345565691451');
 
-        return $this->client->getResponse($request);
-    }
-
-    public function orderSearchMusicTest() {
-        $request = new HiFiveOrderSearchMusicRequest();
-
-        $request->clientId('sample-device')
-            ->keyword('world')
-            ->language(LangEnum::CN)
-            ->page(1)
-            ->pageSize(10);
-
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderListenMixedTest() {
-        $request = new HiFiveOrderListenMixedRequest();
+        $request = new HFOrderListenMixedRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderListenTest() {
-        $request = new HiFiveOrderListenRequest();
+        $request = new HFOrderListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderListenSliceTest() {
-        $request = new HiFiveOrderListenSliceRequest();
+        $request = new HFOrderListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -273,11 +330,14 @@ class Sample {
             ->auditionBegin(0)
             ->auditionEnd(100);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderSheetMusicTest() {
-        $request = new HiFiveOrderSheetMusicRequest();
+        $request = new HFOrderSheetMusicRequest();
 
         $request->clientId('sample-device')
             ->sheetId(1203)
@@ -285,19 +345,25 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderGroupTest() {
-        $request = new HiFiveOrderGroupRequest();
+        $request = new HFOrderGroupRequest();
 
         $request->clientId('sample-device');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderGroupSheetTest() {
-        $request = new HiFiveOrderGroupSheetRequest();
+        $request = new HFOrderGroupSheetRequest();
 
         $request->clientId('sample-device')
             ->groupId('csa0t86qv24')
@@ -306,11 +372,14 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderTagSheetTest() {
-        $request = new HiFiveOrderTagSheetRequest();
+        $request = new HFOrderTagSheetRequest();
 
         $request->clientId('sample-device')
             // ->tagId(5440)
@@ -318,42 +387,54 @@ class Sample {
             ->language(LangEnum::CN)
             ->type(SheetTypeEnum::CUSTOM);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderRefundTest() {
-        $request = new HiFiveOrderRefundRequest();
+        $request = new HFOrderRefundRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderDetailTest() {
-        $request = new HiFiveOrderDetailRequest();
+        $request = new HFOrderDetailRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderPublishTest() {
-        $request = new HiFiveOrderPublishRequest();
+        $request = new HFOrderPublishRequest();
 
         $request->clientId('sample-device')
             ->orderId('1434556569145')
             ->workId('uEC00xeWbExGNilHpSN7MoM3AalWqwUp1');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function orderMusicTest() {
-        $request = new HiFiveOrderMusicRequest();
+        $request = new HFOrderMusicRequest();
 
         $request->clientId('sample-device')
-            ->orderId('1434556569145')
+            ->orderId(time())
             ->workId('uEC00xeWbExGNilHpSN7MoM3AalWqwUp1')
             ->subject('awsl')
             ->music('[{"versionId":"B7B810AABADF","price":20,"num":1}]')
@@ -363,65 +444,40 @@ class Sample {
             ->audioFormat(AudioFormatEnum::MP3_128['ext'])
             ->audioRate(AudioFormatEnum::MP3_128['rate']);
 
-        return $this->client->getResponse($request);
-    }
-
-    public function orderTagMusicTest() {
-        $request = new HiFiveOrderTagMusicRequest();
-
-        $request->clientId('sample-device')
-            // ->tagId(5440)
-            ->language(LangEnum::CN)
-            ->page(1)
-            ->pageSize(10);
-
-        return $this->client->getResponse($request);
-    }
-
-    public function userGetTest() {
-        $request = new HiFiveUserGetRequest();
-
-        $request->clientId('sample-device')
-            ->nickname('zealot')
-            ->gender(GenderEnum::MALE)
-            ->birthday('19900818')
-            ->location('30.779164,103.94547')
-            ->education(EducationEnum::UNDERGRADUATE)
-            ->profession('私企员工')
-            ->isOrganization(true)
-            ->favoriteSinger('周杰伦')
-            ->favoriteGenre('流行');
-
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function baseFavoriteTest() {
-        $request = new HiFiveBaseFavoriteRequest();
+        $request = new HFBaseFavoriteRequest();
 
         $request->clientId('sample-device')
             ->page(1)
             ->pageSize(10);
 
-        // 设置用户标识 或者 在初始化client时设置
-        // $this->client->profile->token('5a9a8a7b7a6c34b6cabbbace77808b67');
-
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
-    public function behaviorTest() {
-        $request = new HiFiveBehaviorRequest();
+    public function baseReportTest() {
+        $request = new HFBaseReportRequest();
 
         $request->clientId('sample-device')
             ->targetId('B75C80A41E3A')
             ->action(1009);
 
-        // $this->client->profile->token('5a9a8a7b7a6c34b6cabbbace77808b67');
-
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
-    public function hotTest() {
-        $request = new HiFiveHotRequest();
+    public function baseHotTest() {
+        $request = new HFBaseHotRequest();
 
         $request->clientId('sample-device')
             ->startTime(1594639058)
@@ -429,45 +485,60 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function baseWeatherTest() {
-        $request = new HiFiveBaseWeatherRequest();
+        $request = new HFBaseWeatherRequest();
 
         $request->clientId('sample-device')
             ->location('30.779164,103.94547');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function baseVisualTest() {
-        $request = new HiFiveBaseVisualRequest();
+        $request = new HFBaseVisualRequest();
 
         $request->clientId('sample-device')
             ->location('30.779164,103.94547');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function musicConfigTest() {
-        $request = new HiFiveMusicConfigRequest();
+        $request = new HFMusicConfigRequest();
 
         $request->clientId('sample-device');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function channelTest() {
-        $request = new HiFiveChannelRequest();
+        $request = new HFChannelRequest();
 
         $request->clientId('sample-device');
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 
     public function channelSheetTest() {
-        $request = new HiFiveChannelSheetRequest();
+        $request = new HFChannelSheetRequest();
 
         $request->clientId('sample-device')
             ->groupId('csa0t86qv24')
@@ -476,7 +547,9 @@ class Sample {
             ->page(1)
             ->pageSize(10);
 
-        return $this->client->getResponse($request);
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
-
 }

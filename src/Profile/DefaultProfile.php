@@ -6,45 +6,44 @@
 
 class DefaultProfile implements HFProfile {
 
-    private static $endpoint;
-    private static $profile;
-    private static $signer;
-    private static $credential;
-    private static $userToken;
+    private $endpoint;
+    private $signer;
+    private $credential;
+    private $userToken;
 
     private function __construct($endpoint, $credential) {
-        self::$endpoint = $endpoint;
-        self::$credential = $credential;
+        $this->endpoint = $endpoint;
+        $this->credential = $credential;
     }
 
     public static function build($endpoint, $appId, $appSecret, $userToken = '') {
         $credential = new Credential($appId, $appSecret);
 
-        self::$profile = new DefaultProfile($endpoint, $credential);
-        self::$userToken = $userToken;
-        return self::$profile;
+        $profile = new DefaultProfile($endpoint, $credential);
+        $profile->userToken = $userToken;
+        return $profile;
     }
 
     public function getSigner() {
-        if (null == self::$signer) {
-            self::$signer = new HmacSha1Signer();
+        if (null == $this->signer) {
+            $this->signer = new HmacSha1Signer();
         }
-        return self::$signer;
+        return $this->signer;
     }
 
     public function getCredential() {
-        return self::$credential;
+        return $this->credential;
     }
 
-    public static function getEndpoint() {
-        return self::$endpoint;
+    public function getEndpoint() {
+        return $this->endpoint;
     }
 
     public function token($token) {
-        self::$userToken = $token;
+        $this->userToken = $token;
     }
 
     public function getToken() {
-        return self::$userToken;
+        return $this->userToken;
     }
 }

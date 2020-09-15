@@ -21,10 +21,22 @@ class Helper {
         $res = array();
         if ($encode) {
             foreach ($param as $k => $v) {
+                if (null === $v || '' === $v) {
+                    continue;
+                }
+                if (is_array($v)) {
+                    $v = implode(',', $v);
+                }
                 array_push($res, $k . '=' . urlencode($v));
             }
         } else {
             foreach ($param as $k => $v) {
+                if (null === $v || '' === $v) {
+                    continue;
+                }
+                if (is_array($v)) {
+                    $v = implode(',', $v);
+                }
                 array_push($res, $k . '=' . $v);
             }
         }
