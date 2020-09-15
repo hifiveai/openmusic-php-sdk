@@ -73,7 +73,7 @@ class Sample {
             ->language(LangEnum::CN)
             ->priceFromCent(1)
             ->priceToCent(10000)
-            ->tagIds([407, 100])
+            ->tagIds('407,100')
             ->bpmFrom(1)
             ->bpmTo(300)
             ->durationFrom(1)
