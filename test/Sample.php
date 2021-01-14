@@ -550,4 +550,16 @@ class Sample {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
     }
+
+    public function trialTest() {
+        $request = new HFTrialRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF');
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
 }
