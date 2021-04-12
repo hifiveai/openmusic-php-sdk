@@ -11,6 +11,8 @@ class HFSearchMusicRequest extends HFRequest {
     public $durationFrom;
     public $durationTo;
     public $tagIds;
+    public $searchFiled;
+    public $searchSmart;
     public $page;
     public $pageSize;
 
@@ -19,7 +21,7 @@ class HFSearchMusicRequest extends HFRequest {
             ->actionName('SearchMusic')
             ->param(array('keyword', 'language', 'priceFromCent',
                 'priceToCent', 'bpmFrom', 'bpmTo',
-                'durationFrom', 'durationTo', 'tagIds',
+                'durationFrom', 'durationTo', 'tagIds', 'searchFiled', 'searchSmart',
                 'page', 'pageSize'));
     }
 
@@ -65,6 +67,16 @@ class HFSearchMusicRequest extends HFRequest {
 
     public function tagIds($tagIds) {
         $this->tagIds = $tagIds;
+        return $this;
+    }
+
+    public function searchFiled($searchFiled){
+        $this->searchFiled = $searchFiled;
+        return $this;
+    }
+
+    public function searchSmart($searchSmart){
+        $this->searchSmart = $searchSmart;
         return $this;
     }
 
