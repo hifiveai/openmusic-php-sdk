@@ -13,8 +13,8 @@ class Helper {
     }
 
     public static function milliSecond() {
-        list($part1, $part2) = explode(' ', microtime());
-        return $part2 . ceil($part1 * 1000);
+        list($t1, $t2) = explode(' ', microtime());
+        return (float)sprintf('%.0f', (floatval($t1) + floatval($t2)) * 1000);
     }
 
     public static function buildQuery($param, $encode = false) {
