@@ -578,7 +578,7 @@ class Sample {
     }
 
     public function UGCTrialTest(){
-        $request = new HFTrafficTrialRequest();
+        $request = new HFUGCTrialRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF');
@@ -634,9 +634,10 @@ class Sample {
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
+            ->duration(187)
             ->audioFormat(AudioFormatEnum::AAC_320['ext'])
             ->audioRate(AudioFormatEnum::AAC_320['rate'])
-            ->timestamp('1618214602000');
+            ->timestamp(1618214602000);
 
         $res = $this->client->getResponse($request);
         if (10200 != $res->code) {
@@ -649,9 +650,10 @@ class Sample {
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
+            ->duration(187)
             ->audioFormat(AudioFormatEnum::AAC_320['ext'])
             ->audioRate(AudioFormatEnum::AAC_320['rate'])
-            ->timestamp('1618214602000');
+            ->timestamp(1618214602000);
 
         $res = $this->client->getResponse($request);
         if (10200 != $res->code) {
@@ -664,9 +666,10 @@ class Sample {
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
+            ->duration(187)
             ->audioFormat(AudioFormatEnum::AAC_320['ext'])
             ->audioRate(AudioFormatEnum::AAC_320['rate'])
-            ->timestamp('1618214602000');
+            ->timestamp(1618214602000);
 
         $res = $this->client->getResponse($request);
         if (10200 != $res->code) {
