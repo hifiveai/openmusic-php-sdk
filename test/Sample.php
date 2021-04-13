@@ -604,7 +604,7 @@ class Sample {
     }
 
     public function KTrialTest(){
-        $request = new HFTrafficTrialRequest();
+        $request = new HFKTrialRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF');
