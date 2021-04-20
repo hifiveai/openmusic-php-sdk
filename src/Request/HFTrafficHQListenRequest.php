@@ -1,6 +1,6 @@
 <?php
 
-class HFHQListenRequest extends HFRequest {
+class HFTrafficHQListenRequest extends HFRequest {
 
     public $musicId;
     public $audioFormat;

@@ -104,7 +104,7 @@ class Sample {
     }
 
     public function hqlListenTest() {
-        $request = new HFHQListenRequest();
+        $request = new HFTrafficHQListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -118,7 +118,7 @@ class Sample {
     }
 
     public function hqlListenSliceTest() {
-        $request = new HFHQListenSliceRequest();
+        $request = new HFTrafficHQListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -670,6 +670,18 @@ class Sample {
             ->audioFormat(AudioFormatEnum::AAC_320['ext'])
             ->audioRate(AudioFormatEnum::AAC_320['rate'])
             ->timestamp(1618214602000);
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function orderTrialRequest(){
+        $request = new HFOrderTrialRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF');
 
         $res = $this->client->getResponse($request);
         if (10200 != $res->code) {
