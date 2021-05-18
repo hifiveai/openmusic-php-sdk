@@ -688,4 +688,18 @@ class Sample {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
     }
+
+    public function authorizeMusic(){
+        $request = new HFAuthorizeMusicRequest();
+
+        $request->clientId('sample-device')
+            ->page(1)
+            ->pageSize(10);
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+
+    }
 }
