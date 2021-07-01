@@ -5,7 +5,8 @@ class HFAuthorizeMusicDetailRequest extends HFRequest
     public $musicIds;
 
     function __construct(){
-        $this->actionName('')
+        $this->actionName('AuthorizeMusicDetail')
+            ->method('POST')
             ->param(array('musicIds'));
     }
 
