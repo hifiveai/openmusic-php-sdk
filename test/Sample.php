@@ -700,6 +700,17 @@ class Sample {
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
+    }
 
+    public function authorizeMusicDetail(){
+        $request = new HFAuthorizeMusicDetailRequest();
+
+        $request->clientId('sample-device')
+            ->musicIds(array('1D652ADA1AC', '1D652ADB203'));
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
     }
 }
