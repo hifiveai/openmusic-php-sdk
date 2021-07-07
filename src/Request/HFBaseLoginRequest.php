@@ -88,7 +88,7 @@ class HFBaseLoginRequest extends HFRequest {
 
     public function appId($appId){
         $this->appId = $appId;
-        return $appId;
+        return $this;
     }
 
     public function timestamp($timestamp){
