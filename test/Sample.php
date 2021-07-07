@@ -689,7 +689,7 @@ class Sample {
         }
     }
 
-    public function authorizeMusic(){
+    public function authorizeMusicTest(){
         $request = new HFAuthorizeMusicRequest();
 
         $request->clientId('sample-device')
@@ -702,7 +702,7 @@ class Sample {
         }
     }
 
-    public function authorizeMusicDetail(){
+    public function authorizeMusicDetailTest(){
         $request = new HFAuthorizeMusicDetailRequest();
 
         $request->clientId('sample-device')
@@ -713,4 +713,103 @@ class Sample {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
     }
+
+    public function createMemberSheetTest(){
+        $request = new HFCreateMemberSheetRequest();
+
+        $request->clientId('sample-device')
+            ->sheetName('会员歌单');
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function deleteMemberSheetTest(){
+        $request = new HFDeleteMemberSheetRequest();
+
+        $request->clientId('sample-device')
+            ->sheetId('111111');
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function memberSheetTest(){
+        $request = new HFMemberSheetRequest();
+
+        $request->clientId('sample-device')
+            ->memberOutId('')
+            ->page(1)
+            ->pageSize(100);
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function memberSheetMusicTest(){
+        $request = new HFMemberSheetMusicRequest();
+
+        $request->clientId('sample-device')
+            ->sheetId('')
+            ->page(1)
+            ->pageSize(10);
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function addMemberSheetMusicTest(){
+        $request = new HFAddMemberSheetMusicRequest();
+
+        $request->clientId('')
+            ->sheetId('')
+            ->musicId('');
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+
+    }
+
+    public function removeMemberSheetMusic(){
+        $request = new HFRemoveMemberSheetMusicRequest();
+
+        $request->clientId('')
+            ->sheetId('')
+            ->musicId('');
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function clearMemberSheetMusicTest(){
+        $request = new HFClearMemberSheetMusicRequest();
+
+        $request->clientId('')
+            ->sheetId('');
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
 }
