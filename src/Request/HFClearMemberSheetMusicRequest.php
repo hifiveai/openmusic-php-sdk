@@ -7,7 +7,7 @@ class HFClearMemberSheetMusicRequest extends HFRequest
     public $accessToken;
 
     function __construct(){
-        $this->clientId('')
+        $this->clientId('ClearMemberSheetMusic')
             ->method('POST')
             ->param(array('sheetId', 'timestamp', 'accessToken'));
     }

@@ -2,9 +2,9 @@
 
 class HFMemberSheetMusicRequest extends HFRequest
 {
-    private $sheetId;
-    private $page;
-    private $pageSize;
+    public $sheetId;
+    public $page;
+    public $pageSize;
     public $timestamp;
     public $accessToken;
 
