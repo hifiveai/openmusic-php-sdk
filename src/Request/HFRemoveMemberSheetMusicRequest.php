@@ -2,13 +2,15 @@
 
 class HFRemoveMemberSheetMusicRequest extends HFRequest
 {
-    private $sheetId;
-    private $musicId;
+    public $sheetId;
+    public $musicId;
+    public $timestamp;
+    public $accessToken;
 
     function __construct(){
         $this->actionName('RemoveMemberSheetMusic')
             ->method('POST')
-            ->param(array('sheetId', 'musicId'));
+            ->param(array('sheetId', 'musicId', 'timestamp', 'accessToken'));
     }
 
     public function sheetId($sheetId){
@@ -21,4 +23,13 @@ class HFRemoveMemberSheetMusicRequest extends HFRequest
         return $this;
     }
 
+    public function timestamp($timestamp){
+        $this->timestamp = $timestamp;
+        return $this;
+    }
+
+    public function accessToken($accessToken){
+        $this->accessToken = $accessToken;
+        return $this;
+    }
 }

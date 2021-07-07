@@ -7,8 +7,11 @@
 class Sample {
 
     private $client;
+    private $appId;
+    private $accessToken;
 
     function __construct($url, $appId, $appSecret) {
+        $this->appId = $appId;
         // 基础信息
         $profile = DefaultProfile::build($url, $appId, $appSecret);
         // 初始化client
@@ -27,15 +30,18 @@ class Sample {
             ->profession(8)
             ->isOrganization(true)
             ->favoriteSinger('周杰伦')
-            ->favoriteGenre(1);
+            ->favoriteGenre(1)
+            ->timestamp(Helper::milliSecond())
+            ->appId($this->appId);
 
         $res = $this->client->getResponse($request);
 
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
+        $this->accessToken = $res->data->token;
         // 用户登录后保存token
-        $this->client->profile->token($res->data->token);
+        $this->client->profile->token($this->accessToken);
     }
 
     public function tagSheetTest() {
@@ -718,7 +724,9 @@ class Sample {
         $request = new HFCreateMemberSheetRequest();
 
         $request->clientId('sample-device')
-            ->sheetName('会员歌单');
+            ->sheetName('会员歌单')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 
@@ -731,7 +739,9 @@ class Sample {
         $request = new HFDeleteMemberSheetRequest();
 
         $request->clientId('sample-device')
-            ->sheetId('111111');
+            ->sheetId('111111')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 
@@ -746,7 +756,9 @@ class Sample {
         $request->clientId('sample-device')
             ->memberOutId('')
             ->page(1)
-            ->pageSize(100);
+            ->pageSize(100)
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 
@@ -761,7 +773,9 @@ class Sample {
         $request->clientId('sample-device')
             ->sheetId('')
             ->page(1)
-            ->pageSize(10);
+            ->pageSize(10)
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 
@@ -775,7 +789,9 @@ class Sample {
 
         $request->clientId('')
             ->sheetId('')
-            ->musicId('');
+            ->musicId('')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 
@@ -790,7 +806,9 @@ class Sample {
 
         $request->clientId('')
             ->sheetId('')
-            ->musicId('');
+            ->musicId('')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 
@@ -803,7 +821,9 @@ class Sample {
         $request = new HFClearMemberSheetMusicRequest();
 
         $request->clientId('')
-            ->sheetId('');
+            ->sheetId('')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
 
         $res = $this->client->getResponse($request);
 

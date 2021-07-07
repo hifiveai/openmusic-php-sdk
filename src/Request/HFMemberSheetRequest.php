@@ -2,13 +2,15 @@
 
 class HFMemberSheetRequest extends HFRequest
 {
-    private $memberOutId;
-    private $page;
-    private $pageSize;
+    public $memberOutId;
+    public $page;
+    public $pageSize;
+    public $timestamp;
+    public $accessToken;
 
     function __construct(){
         $this->actionName('MemberSheet')
-            ->param(array('memberOutId', 'page', 'pageSize'));
+            ->param(array('memberOutId', 'page', 'pageSize', 'timestamp', 'accessToken'));
     }
 
     public function memberOutId($memberOutId){
@@ -23,6 +25,16 @@ class HFMemberSheetRequest extends HFRequest
 
     public function pageSize($pageSize){
         $this->pageSize = $pageSize;
+        return $this;
+    }
+
+    public function timestamp($timestamp){
+        $this->timestamp = $timestamp;
+        return $this;
+    }
+
+    public function accessToken($accessToken){
+        $this->accessToken = $accessToken;
         return $this;
     }
 
