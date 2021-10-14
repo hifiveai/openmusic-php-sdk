@@ -6,7 +6,7 @@ class HFProfessionalNewRequest extends HFRequest {
     public $pageSize;
 
     function __construct() {
-        $this->actionName('ProfessionalHot')
+        $this->actionName('ProfessionalNew')
             ->param(array('page',
                 'pageSize'));
     }
