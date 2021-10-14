@@ -10,7 +10,7 @@ abstract class HFRequest {
     private $acceptFormat = 'JSON';
     private $actionName;
     private $method = 'GET';
-    private $version = 'V4.1.1';
+    private $version = 'V4.1.2';
     private $param = array();
 
     public function getClientId() {
