@@ -564,4 +564,30 @@ class Sample {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
     }
+
+    public function professionalHotTest() {
+        $request = new HFProfessionalHotRequest();
+
+        $request->clientId('sample-device')
+            ->page(1)
+            ->pageSize(10);
+        $res = $this->client->getResponse($request);
+        var_dump($res);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function professionalNewTest() {
+        $request = new HFProfessionalNewRequest();
+
+        $request->clientId('sample-device')
+            ->page(1)
+            ->pageSize(10);
+        $res = $this->client->getResponse($request);
+        var_dump($res);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
 }
