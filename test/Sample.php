@@ -482,8 +482,10 @@ class Sample {
             ->duration(180)
             ->page(1)
             ->pageSize(10);
-
+        $t1 = microtime(true);
         $res = $this->client->getResponse($request);
+        $t2 = microtime(true);
+        echo $t2-$t1;
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
