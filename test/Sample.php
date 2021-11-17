@@ -7,8 +7,11 @@
 class Sample {
 
     private $client;
+    private $appId;
+    private $accessToken;
 
     function __construct($url, $appId, $appSecret) {
+        $this->appId = $appId;
         // 基础信息
         $profile = DefaultProfile::build($url, $appId, $appSecret);
         // 初始化client
@@ -27,15 +30,18 @@ class Sample {
             ->profession(8)
             ->isOrganization(true)
             ->favoriteSinger('周杰伦')
-            ->favoriteGenre(1);
+            ->favoriteGenre(1)
+            ->timestamp(Helper::milliSecond())
+            ->appId($this->appId);
 
         $res = $this->client->getResponse($request);
 
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
+        $this->accessToken = $res->data->token;
         // 用户登录后保存token
-        $this->client->profile->token($res->data->token);
+        $this->client->profile->token($this->accessToken);
     }
 
     public function tagSheetTest() {
@@ -78,6 +84,8 @@ class Sample {
             ->bpmTo(300)
             ->durationFrom(1)
             ->durationTo(180)
+            ->searchFiled(SearchFiledEnum::ALBUM_NAME)
+            ->searchSmart(SearchSmartEnum::NO)
             ->page(1)
             ->pageSize(10);
 
@@ -102,7 +110,7 @@ class Sample {
     }
 
     public function hqlListenTest() {
-        $request = new HFHQListenRequest();
+        $request = new HFTrafficHQListenRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -116,7 +124,7 @@ class Sample {
     }
 
     public function hqlListenSliceTest() {
-        $request = new HFHQListenSliceRequest();
+        $request = new HFTrafficHQListenSliceRequest();
 
         $request->clientId('sample-device')
             ->musicId('B7B810AABADF')
@@ -565,6 +573,7 @@ class Sample {
         }
     }
 
+
     public function professionalHotTest() {
         $request = new HFProfessionalHotRequest();
 
@@ -590,4 +599,246 @@ class Sample {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
     }
+
+    public function trafficTrialTest()
+    {
+        $request = new HFTrafficTrialRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF');
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function UGCTrialTest(){
+        $request = new HFUGCTrialRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF');
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function UGCHQListenTest(){
+        $request = new HFUGCHQListenRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('2F0891E31B')
+            ->audioFormat(AudioFormatEnum::MP3_128['ext'])
+            ->audioRate(AudioFormatEnum::MP3_128['rate']);
+
+        $res = $this->client->getResponse($request);
+        var_dump($res);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function KTrialTest(){
+        $request = new HFKTrialRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF');
+
+        $res = $this->client->getResponse($request);
+        var_dump($res);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function KHQListenTest(){
+        $request = new HFKHQListenRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF')
+            ->audioFormat(AudioFormatEnum::AAC_320['ext'])
+            ->audioRate(AudioFormatEnum::AAC_320['rate']);
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function trafficReportListenTest(){
+        $request = new HFTrafficReportListenRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF')
+            ->duration(187)
+            ->audioFormat(AudioFormatEnum::AAC_320['ext'])
+            ->audioRate(AudioFormatEnum::AAC_320['rate'])
+            ->timestamp(1618214602000);
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function UGCReportListenTest(){
+        $request = new HFUGCReportListenRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF')
+            ->duration(187)
+            ->audioFormat(AudioFormatEnum::AAC_320['ext'])
+            ->audioRate(AudioFormatEnum::AAC_320['rate'])
+            ->timestamp(1618214602000);
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function KReportListenTest(){
+        $request = new HFKReportListenRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF')
+            ->duration(187)
+            ->audioFormat(AudioFormatEnum::AAC_320['ext'])
+            ->audioRate(AudioFormatEnum::AAC_320['rate'])
+            ->timestamp(1618214602000);
+
+        $res = $this->client->getResponse($request);
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function orderTrialRequest(){
+        $request = new HFOrderTrialRequest();
+
+        $request->clientId('sample-device')
+            ->musicId('B7B810AABADF');
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+
+    public function createMemberSheetTest(){
+        $request = new HFCreateMemberSheetRequest();
+
+        $request->clientId('sample-device')
+            ->sheetName('会员歌单')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function deleteMemberSheetTest(){
+        $request = new HFDeleteMemberSheetRequest();
+
+        $request->clientId('sample-device')
+            ->sheetId('111111')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function memberSheetTest(){
+        $request = new HFMemberSheetRequest();
+
+        $request->clientId('sample-device')
+            ->memberOutId('')
+            ->page(1)
+            ->pageSize(100)
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function memberSheetMusicTest(){
+        $request = new HFMemberSheetMusicRequest();
+
+        $request->clientId('sample-device')
+            ->sheetId('')
+            ->page(1)
+            ->pageSize(10)
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function addMemberSheetMusicTest(){
+        $request = new HFAddMemberSheetMusicRequest();
+
+        $request->clientId('')
+            ->sheetId('')
+            ->musicId('')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+
+    }
+
+    public function removeMemberSheetMusic(){
+        $request = new HFRemoveMemberSheetMusicRequest();
+
+        $request->clientId('')
+            ->sheetId('')
+            ->musicId('')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function clearMemberSheetMusicTest(){
+        $request = new HFClearMemberSheetMusicRequest();
+
+        $request->clientId('')
+            ->sheetId('')
+            ->accessToken($this->accessToken)
+            ->timestamp(Helper::milliSecond());
+
+        $res = $this->client->getResponse($request);
+
+        if (10200 != $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
 }

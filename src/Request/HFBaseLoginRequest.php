@@ -14,6 +14,8 @@ class HFBaseLoginRequest extends HFRequest {
     public $country;
     public $province;
     public $reserve;
+    public $appId;
+    public $timestamp;
 
     function __construct() {
         $this->method('POST')
@@ -21,7 +23,7 @@ class HFBaseLoginRequest extends HFRequest {
             ->param(array('nickname', 'gender', 'birthday',
                 'location', 'education', 'profession',
                 'isOrganization', 'favoriteSinger', 'favoriteGenre',
-                'country', 'province', 'reserve'));
+                'country', 'province', 'reserve', 'appId', 'timestamp'));
     }
 
     public function nickname($nickname) {
@@ -81,6 +83,16 @@ class HFBaseLoginRequest extends HFRequest {
 
     public function reserve($reserve) {
         $this->reserve = $reserve;
+        return $this;
+    }
+
+    public function appId($appId){
+        $this->appId = $appId;
+        return $this;
+    }
+
+    public function timestamp($timestamp){
+        $this->timestamp = $timestamp;
         return $this;
     }
 }
