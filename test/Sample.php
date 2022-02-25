@@ -99,11 +99,13 @@ class Sample {
         $request = new HFSheetMusicRequest();
 
         $request->clientId('sample-device')
-            ->sheetId(1203)
+            ->sheetId(3818)
             ->page(1)
             ->pageSize(10);
 
         $res = $this->client->getResponse($request);
+        var_dump($res);
+
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
@@ -540,6 +542,8 @@ class Sample {
         $request->clientId('sample-device');
 
         $res = $this->client->getResponse($request);
+        var_dump($res);
+
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
@@ -549,13 +553,36 @@ class Sample {
         $request = new HFChannelSheetRequest();
 
         $request->clientId('sample-device')
-            ->groupId('csa0t86qv24')
+            ->groupId('uz143yfoo5')
             ->recoNum(3)
             ->language(LangEnum::CN)
             ->page(1)
             ->pageSize(10);
 
         $res = $this->client->getResponse($request);
+        var_dump($res);
+
+        echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+
+        if (10200 != $res->code) {
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+        }
+    }
+
+    public function sheetTest() {
+        $request = new HFSheetRequest();
+
+        $request->clientId('sample-device')
+            ->recoNum(3)
+            ->language(LangEnum::CN)
+            ->page(1)
+            ->pageSize(10);
+
+        $res = $this->client->getResponse($request);
+        var_dump($res);
+
+        echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
+
         if (10200 != $res->code) {
             echo $request->getActionName(), ' ', $res->code, ' ', $res->msg, '<br/>';
         }
