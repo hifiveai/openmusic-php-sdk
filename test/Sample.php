@@ -868,4 +868,32 @@ class Sample {
         }
     }
 
+    public function HFAuthorizeMusicRequest(){
+        $request = new HFAuthorizeMusicRequest();
+
+        $request->clientId('1212312')
+            ->page(1)
+            ->pageSize(10);
+
+        $res = $this->client->getResponse($request);
+        echo $res->code;
+        if (10200 == $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg,json_encode($res), '<br/>';
+            echo "b";
+        }
+    }
+
+    public function HFMusicSkuRequest(){
+        $request = new HFMusicSkuRequest();
+
+        $request->clientId('1212312');
+
+        $res = $this->client->getResponse($request);
+        echo $res->code;
+        if (10200 == $res->code){
+            echo $request->getActionName(), ' ', $res->code, ' ', $res->msg,json_encode($res), '<br/>';
+            echo "b";
+        }
+    }
+
 }
