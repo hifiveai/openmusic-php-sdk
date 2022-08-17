@@ -8,11 +8,12 @@ class HFOrderAuthorizationRequest extends HFRequest {
     public $period;
     public $area;
     public $orderIds;
+    public $scene;
 
     function __construct() {
         $this->actionName('OrderAuthorization')
             ->param(array('companyName', 'projectName', 'brand',
-                'period', 'area', 'orderIds'));
+                'period', 'area', 'orderIds','version','scene'));
     }
 
     public function companyName($companyName) {
@@ -44,4 +45,10 @@ class HFOrderAuthorizationRequest extends HFRequest {
         $this->orderIds = $orderIds;
         return $this;
     }
+
+    public function scene($scene) {
+        $this->scene = $scene;
+        return $this;
+    }
+
 }

@@ -6,11 +6,12 @@ class HFBaseHotRequest extends HFRequest {
     public $duration;
     public $page;
     public $pageSize;
+    public $levels;
 
     function __construct() {
         $this->actionName('BaseHot')
             ->param(array('startTime', 'duration', 'page',
-                'pageSize'));
+                'pageSize','levels'));
     }
 
     public function startTime($startTime) {
@@ -30,6 +31,11 @@ class HFBaseHotRequest extends HFRequest {
 
     public function pageSize($pageSize) {
         $this->pageSize = $pageSize;
+        return $this;
+    }
+
+    public function levels($levels){
+        $this->levels = $levels;
         return $this;
     }
 }

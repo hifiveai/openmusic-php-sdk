@@ -10,7 +10,7 @@ abstract class HFRequest {
     private $acceptFormat = 'JSON';
     private $actionName;
     private $method = 'GET';
-    private $version = 'V4.1.2';
+    private $version = 'V4.2.0';
     private $param = array();
 
     public function getClientId() {
@@ -46,6 +46,11 @@ abstract class HFRequest {
 
     public function getVersion() {
         return $this->version;
+    }
+
+    public function version($version) {
+        $this->version = $version;
+        return $this;
     }
 
     public function getParam() {

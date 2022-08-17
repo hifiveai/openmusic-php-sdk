@@ -15,6 +15,7 @@ class HFSearchMusicRequest extends HFRequest {
     public $searchSmart;
     public $page;
     public $pageSize;
+    public $levels;
 
     function __construct() {
         $this->method('POST')
@@ -22,7 +23,7 @@ class HFSearchMusicRequest extends HFRequest {
             ->param(array('keyword', 'language', 'priceFromCent',
                 'priceToCent', 'bpmFrom', 'bpmTo',
                 'durationFrom', 'durationTo', 'tagIds', 'searchFiled', 'searchSmart',
-                'page', 'pageSize'));
+                'page', 'pageSize','levels'));
     }
 
     public function keyword($keyword) {
@@ -87,6 +88,11 @@ class HFSearchMusicRequest extends HFRequest {
 
     public function pageSize($pageSize) {
         $this->pageSize = $pageSize;
+        return $this;
+    }
+
+    public function levels($levels){
+        $this->levels = $levels;
         return $this;
     }
 }

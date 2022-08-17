@@ -6,11 +6,13 @@ class HFSheetRequest extends HFRequest {
     public $language;
     public $page;
     public $pageSize;
+    public $tagId;
+    public $tagFilter;
 
     function __construct() {
         $this->actionName('Sheet')
             ->param(array('recoNum', 'language',
-                'page', 'pageSize'));
+                'page', 'pageSize','tagId','tagFilter'));
     }
 
     public function recoNum($recoNum) {
@@ -32,4 +34,16 @@ class HFSheetRequest extends HFRequest {
         $this->pageSize = $pageSize;
         return $this;
     }
+
+    public function tagId($tagId){
+        $this->tagId = $tagId;
+        return $this;
+    }
+
+    public function tagFilter($tagFilter){
+        $this->tagFilter = $tagFilter;
+        return $this;
+    }
+
+
 }
